@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+
+:root{
+  --bg:#132D46;
+  --text:rgb(255, 255, 255);
+  --border:rgb(0, 0, 0);
+}
+body{
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Funnel Display', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
