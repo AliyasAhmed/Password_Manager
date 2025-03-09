@@ -4,7 +4,6 @@ import NotVisibleEye from "../assets/svg/VisibleOffeye.svg";
 const Manager = () => {
   useEffect(() => {
     let passwords = localStorage.getItem("password");
-    let passwordArray;
     if (passwords) {
       setpasswordArray(JSON.parse(passwords));
     }
