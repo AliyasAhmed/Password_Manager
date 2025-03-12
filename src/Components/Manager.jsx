@@ -2,6 +2,7 @@ import { React, useRef, useState, useEffect } from "react";
 import VisibleEye from "../assets/svg/VisibleEye.svg";
 import NotVisibleEye from "../assets/svg/VisibleOffeye.svg";
 import copy from "../assets/svg/copy.svg";
+import { v4 as uuidv4 } from "uuid";
 
 const Manager = () => {
   useEffect(() => {
@@ -24,14 +25,32 @@ const Manager = () => {
     }
   };
   const SavePassWord = () => {
-    setpasswordArray([...passwordArray, Form]);
-    localStorage.setItem("password", JSON.stringify([...passwordArray, Form]));
+    setpasswordArray([...passwordArray, { ...Form, id: uuidv4() }]);
+    SetForm({ website: "", username: "", password: "" })
+    localStorage.setItem(
+      "password",
+      JSON.stringify([...passwordArray, { ...Form, id: uuidv4() }])
+    );
+  };
+  const Deletepassword = (id) => {
+    let c = confirm("Do you Want to Delete this");
+    if (c) {
+      setpasswordArray(passwordArray.filter((item) => item.id !== id));
+      localStorage.setItem(
+        "password",
+        JSON.stringify(passwordArray.filter((item) => item.id !== id))
+      );
+    }
+  };
+  const Editpassword = (id) => {
+    SetForm(passwordArray.filter((item) => item.id === id)[0]);
+    setpasswordArray(passwordArray.filter((item) => item.id !== id));
   };
   const handlechange = (e) => {
     SetForm({ ...Form, [e.target.name]: e.target.value });
   };
   const CopyText = (text) => {
-    navigator.clipboard.writeText(text)
+    navigator.clipboard.writeText(text);
   };
   return (
     <>
@@ -101,6 +120,7 @@ const Manager = () => {
                   <th className="py-2">Site</th>
                   <th className="py-2">Username</th>
                   <th className="py-2">Passwords</th>
+                  <th className="py-2">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -112,7 +132,9 @@ const Manager = () => {
                           {item.website}
                         </a>
                         <img
-                          onClick={()=>{CopyText(item.website)}}
+                          onClick={() => {
+                            CopyText(item.website);
+                          }}
                           src={copy}
                           alt="Copy Icon"
                           className="w-5 h-5 inline-block ml-3 cursor-pointer hover:scale-[90%]"
@@ -121,7 +143,9 @@ const Manager = () => {
                       <td className="text-center w-32 py-3 ">
                         {item.username}
                         <img
-                          onClick={()=>{CopyText(item.username)}}
+                          onClick={() => {
+                            CopyText(item.username);
+                          }}
                           src={copy}
                           alt="Copy Icon"
                           className="w-5 h-5 inline-block ml-3 cursor-pointer hover:scale-[90%]"
@@ -130,11 +154,43 @@ const Manager = () => {
                       <td className="text-center w-32 py-3">
                         {item.password}
                         <img
-                          onClick={()=>{CopyText(item.password)}}
+                          onClick={() => {
+                            CopyText(item.password);
+                          }}
                           src={copy}
                           alt="Copy Icon"
                           className="w-5 h-5 inline-block ml-2 cursor-pointer hover:scale-[90%]"
                         />
+                      </td>
+                      {/* Action Buttons */}
+                      <td className="text-center w-32 py-3 ">
+                        {/* Edit */}
+                        <span
+                          className="cursor-pointer mx-1"
+                          onClick={() => {
+                            Editpassword(item.id);
+                          }}
+                        >
+                          <lord-icon
+                            src="https://cdn.lordicon.com/exymduqj.json"
+                            trigger="hover"
+                            state="hover-line"
+                            colors="primary:#7166ee,secondary:#4030e8"
+                          ></lord-icon>
+                        </span>
+                        {/* delete */}
+                        <span
+                          className="cursor-pointer mx-1"
+                          onClick={() => {
+                            Deletepassword(item.id);
+                          }}
+                        >
+                          <lord-icon
+                            src="https://cdn.lordicon.com/hwjcdycb.json"
+                            trigger="hover"
+                            colors="primary:#7166ee,secondary:#4030e8"
+                          ></lord-icon>
+                        </span>
                       </td>
                     </tr>
                   );
