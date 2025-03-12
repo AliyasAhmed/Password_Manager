@@ -3,8 +3,9 @@ import VisibleEye from "../assets/svg/VisibleEye.svg";
 import NotVisibleEye from "../assets/svg/VisibleOffeye.svg";
 import copy from "../assets/svg/copy.png";
 import { v4 as uuidv4 } from "uuid";
-
+import { ToastContainer, toast } from "react-toastify";
 const Manager = () => {
+  const notify = () => toast("Wow so easy!");
   useEffect(() => {
     let passwords = localStorage.getItem("password");
     if (passwords) {
@@ -25,12 +26,18 @@ const Manager = () => {
     }
   };
   const SavePassWord = () => {
-    setpasswordArray([...passwordArray, { ...Form, id: uuidv4() }]);
-    SetForm({ website: "", username: "", password: "" })
-    localStorage.setItem(
-      "password",
-      JSON.stringify([...passwordArray, { ...Form, id: uuidv4() }])
-    );
+    if (
+      Form.website.length > 3 &&
+      Form.username.length > 3 &&
+      Form.password.length > 3
+    ) {
+      setpasswordArray([...passwordArray, { ...Form, id: uuidv4() }]);
+      SetForm({ website: "", username: "", password: "" });
+      localStorage.setItem(
+        "password",
+        JSON.stringify([...passwordArray, { ...Form, id: uuidv4() }])
+      );
+    }
   };
   const Deletepassword = (id) => {
     let c = confirm("Do you Want to Delete this");
@@ -55,11 +62,11 @@ const Manager = () => {
   return (
     <>
       <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
-      <div className="mx-auto max-w-4xl text-center ">
+      <div className="mx-auto max-w-4xl text-center md:p-0">
         <p className="text-2xl">Your own paswword manager</p>
         <div className="text-white flex flex-col p-4 gap-3">
           <input
-            className="bg-[#3f3f3f27] text-white w-full rounded-lg p-3 focus:ring-1 focus:ring-[#2516c7] focus:outline-none"
+            className="bg-[#2516c725] text-white w-full rounded-lg p-3 focus:ring-1 focus:ring-[#2516c7] focus:outline-none"
             type="text"
             name="website"
             id=""
@@ -67,9 +74,9 @@ const Manager = () => {
             value={Form.website}
             onChange={handlechange}
           />
-          <div className="flex w-full gap-8">
+          <div className="flex w-full gap-4 flex-col md:flex-row">
             <input
-              className=" w-full rounded-lg bg-[#3f3f3f27] text-white p-3 focus:ring-1 focus:ring-[#2516c7] focus:outline-none"
+              className=" w-full rounded-lg bg-[#2516c725] text-white p-3 focus:ring-1 focus:ring-[#2516c7] focus:outline-none"
               type="text"
               name="username"
               id=""
@@ -79,7 +86,7 @@ const Manager = () => {
             />
             <div className="relative">
               <input
-                className=" w-full rounded-lg bg-[#3f3f3f27] text-white p-3 focus:ring-1 focus:ring-[#2516c7] focus:outline-none"
+                className=" w-full rounded-lg bg-[#2516c725] text-white p-3 focus:ring-1 focus:ring-[#2516c7] focus:outline-none"
                 type="password"
                 name="password"
                 id=""
@@ -109,7 +116,7 @@ const Manager = () => {
 
         {/* SAved passwords session */}
 
-        <div className="passwords mt-10 bg-[#3f3f3f27] rounded-xl p-5">
+        <div className="passwords mt-10 bg-[#2516c725] rounded-xl p-5 backdrop-blur-md">
           <h2 className="font-bold text-2xl mb-5">Your Passwords</h2>
           {passwordArray.length === 0 ? (
             <div>No passwords to show</div>
