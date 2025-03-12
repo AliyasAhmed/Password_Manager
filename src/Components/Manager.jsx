@@ -1,7 +1,7 @@
 import { React, useRef, useState, useEffect } from "react";
 import VisibleEye from "../assets/svg/VisibleEye.svg";
 import NotVisibleEye from "../assets/svg/VisibleOffeye.svg";
-import copy from "../assets/svg/copy.svg";
+import copy from "../assets/svg/copy.png";
 import { v4 as uuidv4 } from "uuid";
 
 const Manager = () => {
@@ -59,7 +59,7 @@ const Manager = () => {
         <p className="text-2xl">Your own paswword manager</p>
         <div className="text-white flex flex-col p-4 gap-3">
           <input
-            className="bg-[#3f3f3f27] text-white w-full rounded-lg p-3 focus:border-green-600"
+            className="bg-[#3f3f3f27] text-white w-full rounded-lg p-3 focus:ring-1 focus:ring-[#2516c7] focus:outline-none"
             type="text"
             name="website"
             id=""
@@ -69,7 +69,7 @@ const Manager = () => {
           />
           <div className="flex w-full gap-8">
             <input
-              className=" w-full rounded-lg bg-[#3f3f3f27] text-white p-3"
+              className=" w-full rounded-lg bg-[#3f3f3f27] text-white p-3 focus:ring-1 focus:ring-[#2516c7] focus:outline-none"
               type="text"
               name="username"
               id=""
@@ -79,7 +79,7 @@ const Manager = () => {
             />
             <div className="relative">
               <input
-                className=" w-full rounded-lg bg-[#3f3f3f27] text-white p-3"
+                className=" w-full rounded-lg bg-[#3f3f3f27] text-white p-3 focus:ring-1 focus:ring-[#2516c7] focus:outline-none"
                 type="password"
                 name="password"
                 id=""
