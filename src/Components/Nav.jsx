@@ -1,6 +1,6 @@
 import React from "react";
 
-const Navbar = () => {
+const Nav = () => {
   return (
     <nav className=" text-white flex justify-center p-5">
         <div className="font-bold text-5xl hover:scale-[90%] transition-all cursor-pointer">
@@ -12,4 +12,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Nav;

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Manager from "./Components/Manager";
-import Navbar from "./Components/navbar";
+import Navbar from "./Components/Nav"
 const App = () => {
   return (
     <>
