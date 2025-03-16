@@ -3,9 +3,7 @@ import VisibleEye from "../assets/svg/VisibleEye.svg";
 import NotVisibleEye from "../assets/svg/VisibleOffeye.svg";
 import copy from "../assets/svg/copy.png";
 import { v4 as uuidv4 } from "uuid";
-import { ToastContainer, toast } from "react-toastify";
 const Manager = () => {
-  const notify = () => toast("Wow so easy!");
   useEffect(() => {
     let passwords = localStorage.getItem("password");
     if (passwords) {
