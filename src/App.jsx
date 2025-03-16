@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "./Components/navbar";
+
 import Manager from "./Components/Manager";
+import Navbar from "./Components/navbar";
 const App = () => {
   return (
     <>
       <Navbar />
-
       <Manager />
     </>
   );
