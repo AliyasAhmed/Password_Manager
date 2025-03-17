@@ -119,6 +119,63 @@ setForm({ ...form, [e.target.name]: e.target.value });
 
 This is the best way to handle multiple input fields dynamically in React!
 
+### How is new values saved in form object explain
+
+Great question! Let's break it down and clear up the confusion.  
+
+### **Understanding `exampleFunc(a, b)` vs. `setForm({ ...form, [e.target.name]: e.target.value })`**
+
+#### **1. Function Call vs. Object Update**
+- **`exampleFunc(a, b)`**  
+  - Here, `a` and `b` are just function parameters.
+  - Calling `exampleFunc(5, 10)` means `a = 5` and `b = 10`, but this does not automatically modify any stored value.
+  - The function would need to explicitly **return** or **modify a variable** to store new values.
+
+- **`setForm({ ...form, [e.target.name]: e.target.value })`**  
+  - This is an **object update**, not just a function call.
+  - It creates a **new object** with `...form` (copying old values) and then **overwrites one key-value pair**.
+  - The result is a new object that is stored back in `form`.
+
+#### **2. Why `setForm({...form, [e.target.name]: e.target.value})` Stores New Values?**
+- The `setForm` function is **updating state** in React.
+- `{ ...form, [e.target.name]: e.target.value }` creates a **new object** where:
+  - `...form` keeps existing values.
+  - `[e.target.name]: e.target.value` updates a single field dynamically.
+- `setForm(newObject)` tells React: **"Hey, replace the old `form` state with this new one."**  
+  - React then updates the UI based on the new state.
+
+#### **Example to Compare**
+Let's compare it to a function:
+
+```js
+function exampleFunc(a, b) {
+  a = b; // This changes a inside the function, but it won't affect anything outside unless returned
+}
+
+let x = 5;
+let y = 10;
+exampleFunc(x, y);
+console.log(x); // Still 5, because `exampleFunc` didn't modify `x` globally
+```
+
+Now, compare this with how **React state works**:
+
+```js
+let form = { website: "", username: "", password: "" };
+
+form = { ...form, website: "example.com" }; // This directly updates `form`
+console.log(form); // { website: "example.com", username: "", password: "" }
+```
+
+Here, `form` is reassigned with new values, which **actually modifies its content**.
+
+---
+
+### **Final Takeaway**
+- `exampleFunc(a, b)` is just a function call, it **does not store anything** unless explicitly returned or assigned.
+- `setForm({...form, [e.target.name]: e.target.value})` **creates a new object and updates state**, which React then stores and uses.
+
+
 ---
 
 # **saves passwords**
